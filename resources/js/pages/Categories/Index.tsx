@@ -84,10 +84,10 @@ export default function CategoryIndex({ categories }: { categories: Category[] }
                                     <TableCell>{category.description.substring(0, 65)}</TableCell>
                                     <TableCell>{formatDate(category.created_at)}</TableCell>
                                     <TableCell className="text-right">
-                                        <Link href={route('categories.edit', category.id)} className="text-indigo-500">
+                                        <Link href={route('categories.edit', category.id)} className="text-indigo-500 font-medium">
                                             Edit
                                         </Link>
-                                        <button onClick={() => { deleteCategory(category.id) }} className={"ml-1 text-red-600 cursor-pointer"}>
+                                        <button onClick={() => { deleteCategory(category.id) }} className={"ml-1 text-red-600 cursor-pointer font-medium"}>
                                             Delete
                                         </button>
                                     </TableCell>
