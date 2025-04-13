@@ -12,9 +12,13 @@ import React, {FormEventHandler, useRef} from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
+        title: 'Categories',
+        href: '/categories',
+    },
+    {
         title: 'Category Create',
         href: '/categories/create',
-    },
+    }
 ];
 
 type CreateCategoryForm = {

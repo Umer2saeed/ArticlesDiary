@@ -62,7 +62,7 @@ export default function CategoryIndex({ categories }: { categories: Category[] }
 
                 <div className="border-sidebar-border/70 dark:border-sidebar-border relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border p-4 md:min-h-min">
                     <Table>
-                        <TableCaption>A list of your recent posts.</TableCaption>
+                        <TableCaption>A list of your recent categories.</TableCaption>
                         <TableHeader>
                             <TableRow>
                                 <TableHead className="w-[80px]">ID</TableHead>
@@ -84,10 +84,9 @@ export default function CategoryIndex({ categories }: { categories: Category[] }
                                     <TableCell>{category.description.substring(0, 65)}</TableCell>
                                     <TableCell>{formatDate(category.created_at)}</TableCell>
                                     <TableCell className="text-right">
-                                        <Link href={route('categories.edit', category.id)} className="text-indigo-500 font-medium">
-                                            Edit
-                                        </Link>
-                                        <button onClick={() => { deleteCategory(category.id) }} className={"ml-1 text-red-600 cursor-pointer font-medium"}>
+                                        <Link href={route('categories.show', category.id)} className="text-gray-500 font-medium">View</Link>
+                                        <Link href={route('categories.edit', category.id)} className="ml-1.5 text-indigo-500 font-medium">Edit</Link>
+                                        <button onClick={() => { deleteCategory(category.id) }} className={"ml-1.5 text-red-500 cursor-pointer font-medium"}>
                                             Delete
                                         </button>
                                     </TableCell>

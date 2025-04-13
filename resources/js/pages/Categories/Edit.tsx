@@ -11,9 +11,14 @@ import React, {FormEventHandler, useRef, useState} from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Category Update',
+        title: 'Categories',
         href: '/categories',
     },
+    {
+        title: 'Category Update',
+        href: '/categories',
+    }
+
 ];
 
 export default function CategoryEdit({ category }: { category: Category}) {
