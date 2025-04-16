@@ -12,7 +12,21 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
 import React, {useEffect} from "react";
+import {Button} from "@/components/ui/button";
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -44,10 +58,17 @@ export default function CategoryIndex({ categories }: { categories: Category[] }
     }
 
    const deleteCategory = (id: number) => {
-        if (confirm('Are you sure you want to delete this category?')) {
-            router.delete(route('categories.destroy', { id }));
-            toast.success('Category deleted successfully!');
-        }
+        // if (confirm('Are you sure you want to delete this category?')) {
+            router.delete(route('categories.destroy', id ), {
+                onSuccess: () => {
+                    toast.success('Category deleted successfully!');
+                },
+                onError: () => {
+                    toast.error('Error deleting category');
+                },
+            });
+
+        // }
    }
 
     return (
@@ -86,9 +107,31 @@ export default function CategoryIndex({ categories }: { categories: Category[] }
                                     <TableCell className="text-right">
                                         <Link href={route('categories.show', category.id)} className="text-gray-500 font-medium">View</Link>
                                         <Link href={route('categories.edit', category.id)} className="ml-1.5 text-indigo-500 font-medium">Edit</Link>
-                                        <button onClick={() => { deleteCategory(category.id) }} className={"ml-1.5 text-red-500 cursor-pointer font-medium"}>
-                                            Delete
-                                        </button>
+                                        {/*<button onClick={() => { deleteCategory(category.id) }} className={"ml-1.5 text-red-500 cursor-pointer font-medium"}>*/}
+                                        {/*    Delete*/}
+                                        {/*</button>*/}
+
+                                        <AlertDialog>
+                                            <AlertDialogTrigger asChild>
+                                                <button className={"ml-1.5 text-red-500 cursor-pointer font-medium"}>
+                                                    Delete
+                                                </button>
+                                            </AlertDialogTrigger>
+                                            <AlertDialogContent>
+                                                <AlertDialogHeader>
+                                                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                                    <AlertDialogDescription>
+                                                        This action cannot be undone. This will permanently delete your
+                                                        account and remove your data from our servers.
+                                                    </AlertDialogDescription>
+                                                </AlertDialogHeader>
+                                                <AlertDialogFooter>
+                                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                                    <AlertDialogAction onClick={() => { deleteCategory(category.id) }} >Continue</AlertDialogAction>
+                                                </AlertDialogFooter>
+                                            </AlertDialogContent>
+                                        </AlertDialog>
+
                                     </TableCell>
                                 </TableRow>
                             )) }

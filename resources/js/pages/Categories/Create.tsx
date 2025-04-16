@@ -168,7 +168,6 @@ export default function CategoryCreate() {
                                             ImageStyle,
                                             ImageStyleUI
                                         ]
-
                                     } }
                                 />
                                 <InputError message={errors.description} />
